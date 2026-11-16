@@ -1,0 +1,11 @@
+To build the docker image use:
+    docker build -t playground .
+To run the docker image use:
+    docker run -p 8080:8080 --cpus=".2" -m 512mb --memory-swap 512mb --pids-limit=64 --cap-drop=ALL --security-opt=no-new-privileges playground
+
+--cpus=".2" limits the percentage of cpu used
+-m 512mb limits the max memory used
+--memory-swap 512mb limits the max memory swap used
+--pids-limit=64 limits the amount of pids running at the same time, this specific number is probably only valid if a new container is createdd for each process
+--cap-drop=ALL removes all unnecessary Linux capabilities, preventing privilege escalation
+--security-opt=no-new-privileges prevents processes inside the container from gaining more privileges than they already have
